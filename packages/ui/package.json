@@ -1,0 +1,9 @@
+{
+  "name": "@byume/ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}
