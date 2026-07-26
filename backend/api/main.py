@@ -42,7 +42,7 @@ origins = [
 # Add origins from settings if they exist
 if settings.BACKEND_CORS_ORIGINS:
     for origin in settings.BACKEND_CORS_ORIGINS:
-        origins.append(str(origin))
+        origins.append(str(origin).rstrip('/'))
 
 app.add_middleware(
     CORSMiddleware,
