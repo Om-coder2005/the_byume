@@ -13,7 +13,7 @@ export default function CommunityShowcase() {
   const fetchReviews = async () => {
     try {
       // Fetch only featured reviews
-      const res = await fetch("http://localhost:8000/api/reviews/?featured_only=true");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/reviews/?featured_only=true`);
       if (res.ok) {
         setReviews(await res.json());
       }

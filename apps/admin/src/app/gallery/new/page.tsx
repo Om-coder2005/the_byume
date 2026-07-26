@@ -27,7 +27,7 @@ export default function NewGalleryItemPage() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/gallery/categories");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/gallery/categories`);
       if (res.ok) {
         setCategories(await res.json());
       }
@@ -66,7 +66,7 @@ export default function NewGalleryItemPage() {
         price_to: parseFloat(formData.price_to as any),
       };
 
-      const res = await fetch("http://localhost:8000/api/gallery/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/gallery/`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

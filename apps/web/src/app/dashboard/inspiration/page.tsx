@@ -19,7 +19,7 @@ export default function InspirationBoardPage() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/api/wishlist/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/wishlist/`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -35,7 +35,7 @@ export default function InspirationBoardPage() {
   const removeWishlist = async (id: number, gallery_id: number) => {
     const token = localStorage.getItem('byume_token');
     try {
-      await fetch(`http://localhost:8000/api/wishlist/${gallery_id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/wishlist/${gallery_id}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

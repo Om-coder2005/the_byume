@@ -40,10 +40,10 @@ export default function CustomerOrderTimeline() {
   const fetchOrder = async (token: string) => {
     try {
       const [orderRes, payRes] = await Promise.all([
-        fetch(`http://localhost:8000/api/orders/${id}`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/orders/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch(`http://localhost:8000/api/payments/order/${id}`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/payments/order/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       ]);
@@ -98,7 +98,7 @@ export default function CustomerOrderTimeline() {
   const handlePay = async (paymentId: number) => {
     setPaying(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/payments/razorpay-order/${paymentId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/payments/razorpay-order/${paymentId}`, {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -119,7 +119,7 @@ export default function CustomerOrderTimeline() {
         order_id: data.razorpay_order_id,
         handler: async function (response: any) {
           try {
-            const verifyRes = await fetch(`http://localhost:8000/api/payments/verify-payment?payment_id=${paymentId}&razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}`, {
+            const verifyRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/payments/verify-payment?payment_id=${paymentId}&razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}`, {
               method: "POST",
               headers: {
                 'Authorization': `Bearer ${token}`
@@ -156,7 +156,7 @@ export default function CustomerOrderTimeline() {
   const submitReview = async () => {
     setReviewSubmitting(true);
     try {
-      const res = await fetch("http://localhost:8000/api/reviews/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/reviews/`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

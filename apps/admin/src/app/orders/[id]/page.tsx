@@ -24,7 +24,7 @@ export default function OrderDetailPage() {
   const fetchOrder = async () => {
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch(`http://localhost:8000/api/orders/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/orders/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -45,7 +45,7 @@ export default function OrderDetailPage() {
   const handleUpdatePrice = async () => {
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch(`http://localhost:8000/api/orders/${id}/price`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/orders/${id}/price`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export default function OrderDetailPage() {
     }
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch(`http://localhost:8000/api/payments/quote/${id}?final_price=${finalPrice}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/payments/quote/${id}?final_price=${finalPrice}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -95,7 +95,7 @@ export default function OrderDetailPage() {
   const handleUpdateStatus = async (statusName: string, message?: string) => {
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch(`http://localhost:8000/api/orders/${id}/status`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/orders/${id}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

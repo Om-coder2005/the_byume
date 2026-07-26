@@ -24,7 +24,7 @@ export default function ProductDetailPage() {
     if (!token) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/wishlist/${id}/check`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/wishlist/${id}/check`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -46,7 +46,7 @@ export default function ProductDetailPage() {
 
     setSaving(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/wishlist/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/wishlist/${id}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -64,8 +64,8 @@ export default function ProductDetailPage() {
   const fetchProduct = async () => {
     try {
       const [prodRes, recRes] = await Promise.all([
-        fetch(`http://localhost:8000/api/gallery/${id}`),
-        fetch(`http://localhost:8000/api/gallery/${id}/recommendations`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/gallery/${id}`),
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/gallery/${id}/recommendations`)
       ]);
       
       if (prodRes.ok) setProduct(await prodRes.json());

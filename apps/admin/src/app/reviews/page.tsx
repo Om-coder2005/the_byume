@@ -14,7 +14,7 @@ export default function ReviewsManager() {
   const fetchReviews = async () => {
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch("http://localhost:8000/api/reviews/admin", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/reviews/admin`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -31,7 +31,7 @@ export default function ReviewsManager() {
   const toggleFeatured = async (id: number, currentState: boolean) => {
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch(`http://localhost:8000/api/reviews/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/reviews/${id}`, {
         method: 'PATCH',
         headers: { 
           'Authorization': `Bearer ${token}`,
@@ -50,7 +50,7 @@ export default function ReviewsManager() {
   const togglePublic = async (id: number, currentState: boolean) => {
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch(`http://localhost:8000/api/reviews/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/reviews/${id}`, {
         method: 'PATCH',
         headers: { 
           'Authorization': `Bearer ${token}`,

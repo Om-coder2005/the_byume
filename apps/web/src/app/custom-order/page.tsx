@@ -48,7 +48,7 @@ function OrderWizard() {
     formData.append('folder', 'byume/custom_orders');
 
     try {
-      const res = await fetch("http://localhost:8000/api/upload/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/upload/`, {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -91,7 +91,7 @@ Reference Image URL: ${imageUrl}
         notes: notes
       };
 
-      const res = await fetch("http://localhost:8000/api/orders/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/orders/`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

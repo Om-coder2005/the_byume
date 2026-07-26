@@ -49,7 +49,7 @@ export default function ProfilePage() {
 
     const token = localStorage.getItem('byume_token');
     try {
-      const res = await fetch("http://localhost:8000/api/users/me", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/users/me`, {
         method: 'PATCH',
         headers: { 
           'Content-Type': 'application/json',

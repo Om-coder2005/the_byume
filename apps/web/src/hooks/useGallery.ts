@@ -12,8 +12,8 @@ export function useGallery() {
     const fetchData = async () => {
       try {
         const [galleryRes, catRes] = await Promise.all([
-          fetch("http://localhost:8000/api/gallery/"),
-          fetch("http://localhost:8000/api/gallery/categories")
+          fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/gallery/`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/gallery/categories`)
         ]);
 
         if (galleryRes.ok && catRes.ok) {

@@ -13,7 +13,7 @@ export default function GalleryManagerPage() {
 
   const fetchGalleries = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/gallery/");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/gallery/`);
       if (res.ok) {
         const data = await res.json();
         setGalleries(data);
@@ -29,7 +29,7 @@ export default function GalleryManagerPage() {
     if (!confirm("Are you sure you want to delete this product?")) return;
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch(`http://localhost:8000/api/gallery/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/gallery/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

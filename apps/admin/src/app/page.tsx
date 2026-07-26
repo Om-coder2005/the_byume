@@ -14,7 +14,7 @@ export default function DashboardPage() {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('byume_admin_token');
-      const res = await fetch("http://localhost:8000/api/orders/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"}/orders/`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
