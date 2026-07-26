@@ -16,3 +16,15 @@ build/
 coverage/
 venv/
 backend/venv/
+/images/
+/*.png
+/*.jpeg
+/*.jpg
+graphify_*.py
+fix*.py
+do_emojis.py
+help_to_html.py
+home.html
+list_export.py
+passes.txt
+replace_emojis.py
